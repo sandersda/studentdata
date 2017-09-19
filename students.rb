@@ -130,7 +130,7 @@ puts average_age_of_green_eyes(eye_colors, ages)
 def closest_green_eyed_to_average(students, ages, eye_colors)
 	i = 0
 	eye_colors.each do |eye_color|
-		if eye_color == "Green" and ages[i] == 15
+		if eye_color == "Green" and ages[i] == average_age_of_green_eyes(eye_colors,ages)
 			return students[i]
 		end
 		i += 1
@@ -139,16 +139,57 @@ end
 
 puts "\n", closest_green_eyed_to_average(students, ages, eye_colors), "\n"
 
+
+def blood_type_for_each_student(students,blood_types,kid)
+	list_of_blood_types = []
+	i = 0
+	blood_type = ""
+	students.each do |student|
+		if kid == student
+			blood_type = blood_types[i]
+		end
+		i += 1
+	end
+	i = 0
+	students.each do |student|
+		if blood_type == "A"
+			if bloodtypes[i] == "A" or blood_types[i] == "O"
+				list_of_blood_types.push(students[i])
+			end
+		elsif blood_type == "B"
+			if bloodtypes[i] == "B" or blood_types[i] == "O"
+				list_of_blood_types.push(students[i])
+			end
+		elsif blood_type == "AB"
+			return students
+		elsif blood_type == "O"
+			if bloodtypes[i] == "O"
+				list_of_blood_types.push(students[i])
+			end
+		end
+		i += 1
+	end
+	return "they can accept blood from #{list_of_blood_types}"
+end
+
+
+			 
+
+
+
+
 def most_donors(students, blood_types)
 	list_of_donors = []
 	i = 0
 	blood_types.each do |blood_type|
-		if blood_type == "AB"
+		if blood_type == "O"
 			list_of_donors.push(students[i])
 		end
 		i += 1
+		
 	end
+	return list_of_donors
 end
 
 print "\n", most_donors(students, blood_types)
-
+print "\n", blood_type_for_each_student(students,blood_types,"Xavier")
